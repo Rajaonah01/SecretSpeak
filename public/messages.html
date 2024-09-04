@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envoyer un Message</title>
+    <link rel="shortcut icon" href="images/icon.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="styles/messages.css">
+    <script>
+        async function envoyerMessage(event) {
+            event.preventDefault();
+
+            const destinataireEmail = document.getElementById('destinataire').value;
+            const message = document.getElementById('message').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/send-message', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ destinataireEmail, message })
+                });
+
+                const result = await response.text();
+                alert(result);
+
+                if (response.ok) {
+                    document.getElementById('message-form').reset();
+                }
+            } catch (error) {
+                console.error('Erreur lors de l\'envoi du message :', error);
+                alert('Erreur lors de l\'envoi du message.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Envoyer un Message</h1>
+        <form id="message-form" onsubmit="envoyerMessage(event)">
+            <label for="destinataire">Destinataire (E-mail) :</label>
+            <input type="email" id="destinataire" name="destinataire" required><br>
+
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" required></textarea><br>
+
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+</body>
+</html>

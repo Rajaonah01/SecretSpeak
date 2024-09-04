@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="images/icon.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="styles/signup.css">
     <script>
         async function inscrireUtilisateur(event) {
             event.preventDefault();
@@ -26,7 +27,7 @@
                 alert(result);
 
                 if (response.ok) {
-                    // Rediriger vers la page de connexion après une inscription réussie
+                    
                     window.location.href = 'login.html';
                 }
             } catch (error) {

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="images/icon.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="styles/login.css">
     <script>
         async function connecterUtilisateur(event) {
             event.preventDefault();
@@ -25,8 +26,8 @@
                 alert(result);
 
                 if (response.ok) {
-                    // Rediriger vers la page de bienvenue après une connexion réussie
-                    window.location.href = 'welcome.html';
+                  
+                    window.location.href = 'messages.html';
                 }
             } catch (error) {
                 console.error('Erreur lors de la connexion :', error);
