@@ -1,0 +1,274 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  .form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* styles.css */
+.welcome-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 300px;
+  margin: auto;
+}
+
+.welcome-container a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px;
+  color: #007bff;
+  text-decoration: none;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+}
+
+.welcome-container a:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* styles.css */
+
+/* Styles généraux */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed; /* Fixer la navbar en haut */
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Assurer que la navbar soit au-dessus des autres éléments */
+}
+
+.navbar-left .navbar-icon {
+  font-size: 24px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.navbar-right {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar-right a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-right a:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+/* Contenu principal */
+.welcome-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 300px;
+  margin: 80px auto 20px; /* Ajouter une marge en haut pour éviter que le contenu ne soit caché sous la navbar */
+}
+
+.welcome-container a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px;
+  color: #007bff;
+  text-decoration: none;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+}
+
+.welcome-container a:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* styles.css */
+
+/* Styles généraux */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed; /* Fixer la navbar en haut */
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Assurer que la navbar soit au-dessus des autres éléments */
+  box-sizing: border-box;
+}
+
+.navbar-left .navbar-icon {
+  font-size: 24px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.navbar-right {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar-right a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-right a:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+/* Contenu principal */
+.welcome-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 300px;
+  margin: 80px auto 20px; /* Ajouter une marge en haut pour éviter que le contenu ne soit caché sous la navbar */
+}
+
+.welcome-container a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px;
+  color: #007bff;
+  text-decoration: none;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+}
+
+.welcome-container a:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+  .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .navbar-left {
+      margin-bottom: 10px;
+  }
+
+  .navbar-right {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  }
+
+  .navbar-right a {
+      padding: 10px;
+      text-align: center;
+      width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-left .navbar-icon {
+      font-size: 20px;
+  }
+
+  .navbar-right a {
+      font-size: 14px;
+  }
+}
