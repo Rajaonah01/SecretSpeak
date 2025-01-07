@@ -1,0 +1,229 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f4f6;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background: linear-gradient(135deg, #a445b2, #fa4299);
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.menu li {
+    margin-bottom: 20px;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.menu a.active,
+.menu a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.chat-area {
+    flex: 10;
+    display: flex;
+    flex-direction: column;
+    /* background-color: #ffffff; */
+    background-image: url('../images/bord-de-mer-excellent-pour-la-sante1.jpg');
+    padding: 20px;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.chat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0;
+    overflow-y: auto;
+    max-height: 250px;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.chat-info h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.chat-info p {
+    margin: 0;
+    color: #888;
+}
+
+.chat-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.message-list {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.message.received {
+    background-color: #f0f0f0;
+    align-self: flex-start;
+}
+
+.message.sent {
+    background-color: #a445b2;
+    color: white;
+    align-self: flex-end;
+}
+
+.message .time {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+}
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.chat-input input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    margin-right: 10px;
+    background-color: #f0f0f0;
+}
+
+.send-button {
+    background-color: #0f69f0;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+/* Styles mis à jour pour la barre d'entrée de chat */
+.chat-input {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #e0e0e0;
+    background-color: #fff;
+}
+
+.chat-input input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    outline: none;
+    margin: 0 10px;
+    background-color: #f0f0f0;
+}
+
+.photo-button,
+.video-button,
+.voice-button,
+.file-upload-icon,
+.send-button {
+    background-color: #a445b2;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
+
+.photo-button:hover,
+.video-button:hover,
+.voice-button:hover,
+.file-upload-icon:hover,
+.send-button:hover {
+    background-color: #8c38a6;
+}
+
+.file-upload-icon i,
+.photo-button i,
+.video-button i,
+.voice-button i,
+.send-button i {
+    font-size: 18px;
+}
+
+/* Cacher le champ de fichier par défaut et styliser l'icône à la place */
+#file-upload {
+    display: none;
+}

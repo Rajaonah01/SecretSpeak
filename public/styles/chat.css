@@ -1,0 +1,223 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    flex-direction: row; /* Default layout for larger screens */
+}
+
+#onlineUsers {
+    width: 25%;
+    border-right: 1px solid #ddd;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f3f3f3;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#onlineUsers h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#onlineUsersIcon {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #007BFF;
+}
+
+#userList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.user-item:hover {
+    background-color: #e9ecef;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+    background-color: #007BFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.user-info {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-name {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: green; /* Indicateurs de statut en ligne */
+}
+
+#chat {
+    width: 75%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    display: none; /* Cacher la section de chat au départ */
+}
+
+#messages {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+#messageForm {
+    display: flex;
+    gap: 10px;
+}
+
+#messageForm input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#messageForm button {
+    padding: 10px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#messages {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 15px;
+    word-wrap: break-word;
+    position: relative;
+}
+
+.message.sent {
+    align-self: flex-end;
+    background-color: #0084ff;
+    color: white;
+}
+
+.message.received {
+    align-self: flex-start;
+    background-color: #f1f1f1;
+    color: black;
+}
+
+/* Media Query for small screens */
+@media screen and (max-width: 768px) {
+    body {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
+        height: auto;
+    }
+
+    #onlineUsers {
+        width: 100%; /* Make the online users section take full width */
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #chat {
+        width: 100%; /* Make the chat section take full width */
+    }
+
+    #userList {
+        width: 100%;
+    }
+
+    .user-item {
+        justify-content: space-between; /* Make the user-item take full width */
+    }
+
+    .user-avatar {
+        width: 30px;
+        height: 30px; /* Reduce avatar size */
+        font-size: 1rem; /* Adjust font size */
+    }
+
+    .message {
+        max-width: 100%; /* Ensure messages fit within the container */
+    }
+
+    #messageForm input {
+        padding: 8px; /* Reduce input padding */
+    }
+
+    #messageForm button {
+        padding: 8px; /* Reduce button padding */
+    }
+}
+
+/* Media Query for extra small screens (phones in portrait mode) */
+@media screen and (max-width: 480px) {
+    .user-avatar {
+        width: 25px;
+        height: 25px; /* Further reduce avatar size */
+        font-size: 0.9rem; /* Adjust font size */
+    }
+
+    .user-name {
+        font-size: 0.9rem; /* Adjust user name font size */
+    }
+
+    #messageForm input {
+        padding: 6px; /* Reduce input padding */
+    }
+
+    #messageForm button {
+        padding: 6px; /* Reduce button padding */
+    }
+}

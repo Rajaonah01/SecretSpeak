@@ -1,0 +1,132 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e42020;
+    color: #333;
+    background-image: url('../images/plage-de-lingreville-f5bb40e3-7fc5-4de6-ac84-1eb541a5a72f.jpg');
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #4a90e2;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: #ffdd57;
+}
+
+.navbar-logo {
+    height: 40px;
+    width: auto;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    color: white;
+    margin-bottom: 15px;
+    text-align: center;
+    animation: fadeInDown 1s ease-out;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+ul.values-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+ul.values-list li {
+    margin: 10px 0;
+    padding: 10px;
+    background: #eaf4fd;
+    border-left: 5px solid #4a90e2;
+    animation: slideInLeft 1s ease;
+}
+
+.cta {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.cta a {
+    text-decoration: none;
+    background: #4a90e2;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.cta a:hover {
+    background: #357ABD;
+    transform: scale(1.05);
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #4a90e2;
+    color: white;
+    position: relative;
+    margin-top: 40px;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar a {
+        margin: 5px 0;
+    }
+
+    .container {
+        padding: 10px;
+    }
+}
