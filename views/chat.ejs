@@ -6,7 +6,6 @@
     <title>Chat</title>
     <link rel="stylesheet" href="styles/chat.css">
     <link rel="shortcut icon" href="images/icon.jpg" type="image/x-icon">
-    <script src="js/js.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
@@ -14,136 +13,43 @@
         <div id="onlineUsersIcon">
             <i class="fas fa-users"></i>
         </div>
-        <h2><img src="" alt="" srcset=""></h2>
+        <div class="h1">
+            <h1><%= user.email.split('@')[0].charAt(0).toUpperCase() + user.email.split('@')[0].slice(1) %></h1>
+        </div>
         <ul id="userList">
             <% users.forEach(u => { %>
                 <% if (u.id !== user.id) { %> 
                     <li class="user-item" data-user-id="<%= u.id %>">
                         <div class="user-avatar">
-                            <span><%= u.email.charAt(0).toUpperCase() %></span>
+                            <span><%= u.email.split('@')[0].charAt(0).toUpperCase() %></span>
                         </div>
                         <div class="user-info">
-                            <span class="user-name"><%= u.email %></span>
+                            <span class="user-name"><%= u.email.split('@')[0] %></span>
                             <span class="status-indicator"></span> 
                         </div>
                     </li>
                 <% } %>
             <% }) %>
         </ul>
+        
     </div>
-
     <div id="chat">
-        <h1><%= user.email %></h1>
         <input type="hidden" id="userId" value="<%= user.id %>">
-        <input type="hidden" id="receiverId" value=""> 
+        <input type="hidden" id="receiverId" value="">
+        
+        <!-- Ajouter une bascule pour le mode anonyme -->
+        <div id="anonymousToggle">
+            <label for="anonymousMode">Mode Anonyme:</label>
+            <input type="checkbox" id="anonymousMode">
+        </div>
 
-        <h3>Messages:</h3>
+        <h3 id="chatWith">Discussion avec : <span id="receiverName">Personne</span></h3>
         <div id="messages"></div>
         <form id="messageForm">
-            <input type="text" id="messageContent" placeholder="Type a message" required>
-            <button type="submit">Send</button>
+            <input type="text" id="messageContent" placeholder="Ecrire votre message....." required>
+            <button type="submit">Envoyer</button>
         </form>
     </div>
-
-    <script>
-        const socket = io();
-        const userId = document.getElementById("userId").value;
-        const receiverIdInput = document.getElementById("receiverId");
-
-        const userItems = document.querySelectorAll(".user-item");
-        userItems.forEach(item => {
-            item.addEventListener("click", () => {
-                const receiverId = item.dataset.userId;
-                receiverIdInput.value = receiverId; 
-                alert(`You are now chatting with user ID ${receiverId}`);
-                
-                document.getElementById("chat").style.display = "flex";
-                document.getElementById("messages").innerHTML = "";
-                
-                loadMessages();
-            });
-        });
-
-        // Charger les messages depuis le localStorage
-        function loadMessages() {
-            const receiverId = receiverIdInput.value;
-            const messagesContainer = document.getElementById("messages");
-            
-            const messages = JSON.parse(localStorage.getItem(`chatMessages_${userId}_${receiverId}`)) || [];
-
-            messages.forEach(message => {
-                const messageDiv = document.createElement("div");
-                messageDiv.classList.add("message");
-
-                if (message.senderId === userId) {
-                    messageDiv.classList.add("sent");
-                } else {
-                    messageDiv.classList.add("received");
-                }
-
-                messageDiv.textContent = message.content;
-                messagesContainer.appendChild(messageDiv);
-            });
-
-            // Faire défiler les messages vers le bas
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-
-        document.getElementById("messageForm").addEventListener("submit", (e) => {
-            e.preventDefault();
-            const content = document.getElementById("messageContent").value;
-            const receiverId = receiverIdInput.value;
-
-            if (!receiverId) {
-                alert("Please select a user to chat with.");
-                return;
-            }
-
-            // Envoi du message via le socket
-            socket.emit("message", { senderId: userId, receiverId, content });
-
-            // Sauvegarder le message dans le localStorage
-            saveMessage(content, receiverId);
-
-            // Vider le champ de texte
-            document.getElementById("messageContent").value = ""; 
-        });
-
-        // Sauvegarder le message dans le localStorage
-        function saveMessage(content, receiverId) {
-            const messages = JSON.parse(localStorage.getItem(`chatMessages_${userId}_${receiverId}`)) || [];
-            
-            const newMessage = {
-                senderId: userId,
-                receiverId: receiverId,
-                content: content
-            };
-            
-            messages.push(newMessage);
-
-            // Sauvegarder les messages dans le localStorage
-            localStorage.setItem(`chatMessages_${userId}_${receiverId}`, JSON.stringify(messages));
-        }
-
-        socket.on("message", (data) => {
-            const messageDiv = document.createElement("div");
-            messageDiv.classList.add("message");
-
-            if (data.senderId === userId) {
-                messageDiv.classList.add("sent");
-            } else {
-                messageDiv.classList.add("received");
-            }
-
-            messageDiv.textContent = data.content;
-            document.getElementById("messages").appendChild(messageDiv);
-
-            // Sauvegarder le message reçu dans le localStorage
-            saveMessage(data.content, data.receiverId);
-
-            const messagesContainer = document.getElementById("messages");
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        });
-    </script>
+    <script src="/js/chat.js"></script>
 </body>
 </html>

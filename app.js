@@ -4,8 +4,6 @@ const socketIo = require("socket.io");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
-const multer = require("multer");
-const path = require("path");
 const db = require("./db");
 const app = express();
 const server = http.createServer(app);
@@ -20,11 +18,7 @@ app.use(session({
     saveUninitialized: false
 }));
 
-
-const users = [];
-const messages = [];
-
-
+// Routes
 app.get("/", (req, res) => {
     res.render("welcome");
 });
@@ -36,7 +30,6 @@ app.get("/register", (req, res) => {
 app.post("/register", async (req, res) => {
     const { email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    
     try {
         await db.query("INSERT INTO users (email, password) VALUES (?, ?)", [email, hashedPassword]);
         res.redirect("/login");
@@ -66,43 +59,62 @@ app.post("/login", async (req, res) => {
     }
 });
 
-
 app.get("/chat", async (req, res) => {
     if (!req.session.user) {
         return res.redirect("/login");
     }
     try {
         const [users] = await db.query("SELECT id, email FROM users WHERE id != ?", [req.session.user.id]);
-        res.render("chat", { user: req.session.user, users });
+        const [messages] = await db.query(
+            `SELECT 
+                id, 
+                IF(is_anonymous, "Anonyme", sender_id) AS sender_id, 
+                receiver_id, 
+                content, 
+                is_anonymous 
+            FROM messages 
+            WHERE receiver_id = ? OR sender_id = ? 
+            ORDER BY id ASC`,
+            [req.session.user.id, req.session.user.id]
+        );
+        res.render("chat", { user: req.session.user, users, messages });
     } catch (error) {
         console.error(error);
         res.redirect("/login");
     }
 });
 
-
 // Socket.io
 io.on("connection", (socket) => {
-    console.log("Utilisateur connecter");
+    console.log("Utilisateur connecté");
 
     socket.on("message", async (data) => {
-        const { senderId, receiverId, content } = data;
+        const { senderId, receiverId, content, isAnonymous } = data;
 
         try {
             await db.query(
-                "INSERT INTO messages (sender_id, receiver_id, content) VALUES (?, ?, ?)",
-                [senderId, receiverId, content]
+                "INSERT INTO messages (sender_id, receiver_id, content, is_anonymous) VALUES (?, ?, ?, ?)",
+                [senderId, receiverId, content, isAnonymous]
             );
-            io.emit("message", data);
+
+            const response = {
+                senderId: isAnonymous ? "Anonyme" : senderId,
+                receiverId,
+                content,
+                isAnonymous
+            };
+
+            io.emit("message", response);
         } catch (error) {
             console.error(error);
         }
     });
 
     socket.on("disconnect", () => {
-        console.log("Utilisateur déconnecter");
+        console.log("Utilisateur déconnecté");
     });
 });
+
 // Server
 const PORT = 3000;
 server.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
