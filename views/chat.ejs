@@ -33,7 +33,9 @@
         </ul>
         
     </div>
+    
     <div id="chat">
+
         <input type="hidden" id="userId" value="<%= user.id %>">
         <input type="hidden" id="receiverId" value="">
         
@@ -47,9 +49,14 @@
         <div id="messages"></div>
         <form id="messageForm">
             <input type="text" id="messageContent" placeholder="Ecrire votre message....." required>
-            <button type="submit">Envoyer</button>
+            <button type="submit" onclick="teste()">Envoyer</button>
         </form>
     </div>
     <script src="/js/chat.js"></script>
+    <script>
+        function teste (){
+           alert('0');
+        } 
+    </script>
 </body>
 </html>
